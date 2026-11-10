@@ -1,0 +1,10 @@
+{
+  "skill_name": "skill-auto-subtitle-sync",
+  "category": "Procesamiento",
+  "description": "Transcribe audio en japonés y sincroniza/traduce subtítulos en formato WebVTT (.vtt).",
+  "whisper_model": "whisper-large-v3",
+  "target_languages": [
+    "es",
+    "en"
+  ]
+}

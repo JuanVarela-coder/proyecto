@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Platform-X Anime — Tráilers Oficiales y Avances por Capítulo</title>
+  <style>
+    :root {
+      --bg: #0d0f12;
+      --surface: #16191f;
+      --surface2: #1f232c;
+      --border: #232730;
+      --text: #f3f4f6;
+      --muted: #9ca3af;
+      --accent: #e50914;
+      --gold: #f59e0b;
+      --green: #10b981;
+      --indigo: #6366f1;
+    }
+    body.light {
+      --bg: #f9fafb;
+      --surface: #ffffff;
+      --surface2: #f3f4f6;
+      --border: #e5e7eb;
+      --text: #111827;
+      --muted: #6b7280;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      transition: background 0.2s, color 0.2s;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 32px;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+    }
+    .brand-title {
+      font-size: 20px;
+      font-weight: 900;
+      color: var(--accent);
+      letter-spacing: 1px;
+    }
+    .brand-tag {
+      font-size: 10px;
+      background: var(--surface2);
+      color: var(--muted);
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+    .btn-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--surface2);
+      color: var(--text);
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .hero {
+      padding: 46px 32px 36px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(160deg, rgba(229,9,20,0.08) 0%, rgba(99,102,241,0.05) 100%);
+    }
+    .hero h1 {
+      font-size: 38px;
+      font-weight: 900;
+      margin: 8px 0 10px;
+    }
+    .hero p {
+      color: var(--muted);
+      font-size: 15px;
+      margin: 0 0 24px;
+    }
+    .search-box {
+      max-width: 560px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .search-box input {
+      width: 100%;
+      padding: 14px 20px;
+      border-radius: 10px;
+      border: 2px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      font-size: 15px;
+      outline: none;
+    }
+    .search-box input:focus {
+      border-color: var(--accent);
+    }
+    .filter-bar {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 10px 32px;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .pill {
+      padding: 6px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: bold;
+    }
+    .pill.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+    .container {
+      max-width: 1220px;
+      margin: 0 auto;
+      padding: 28px 32px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      gap: 22px;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+      display: flex;
+      flex-direction: column;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.35);
+    }
+    .card-cover {
+      position: relative;
+      aspect-ratio: 2/3;
+      background: var(--surface2);
+      overflow: hidden;
+    }
+    .card-cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+    .card:hover .card-cover img {
+      transform: scale(1.05);
+    }
+    .card-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.62);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      opacity: 0;
+      transition: opacity 0.2s;
+      padding: 12px;
+    }
+    .card:hover .card-overlay {
+      opacity: 1;
+    }
+    .play-circle {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      box-shadow: 0 0 20px rgba(229,9,20,0.8);
+    }
+    .btn-trailer-card {
+      background: var(--gold);
+      color: #000;
+      border: none;
+      border-radius: 6px;
+      padding: 7px 12px;
+      font-size: 11px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+    .badge-top-left {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      padding: 3px 8px;
+      border-radius: 5px;
+      font-size: 10px;
+      font-weight: bold;
+      color: #fff;
+      background: rgba(0,0,0,0.75);
+    }
+    .badge-top-left.airing { background: var(--accent); }
+    .badge-top-left.upcoming { background: var(--indigo); }
+    .badge-score {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: rgba(0,0,0,0.78);
+      color: var(--gold);
+      font-size: 11px;
+      font-weight: bold;
+      padding: 3px 8px;
+      border-radius: 5px;
+    }
+    .card-body {
+      padding: 12px 14px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    .card-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 10px;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    .card-title {
+      font-size: 14px;
+      font-weight: bold;
+      margin: 0 0 5px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .card-desc {
+      font-size: 11.5px;
+      color: var(--muted);
+      margin: 0 0 10px;
+      line-height: 1.45;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .genres {
+      display: flex;
+      gap: 4px;
+      flex-wrap: wrap;
+      margin-top: auto;
+    }
+    .genre-tag {
+      font-size: 10px;
+      padding: 2px 7px;
+      border-radius: 999px;
+      background: var(--surface2);
+      color: var(--muted);
+    }
+    /* Player View */
+    .player-layout {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      align-items: flex-start;
+    }
+    .player-main {
+      flex: 1 1 660px;
+    }
+    .player-side {
+      flex: 0 0 360px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px;
+    }
+    .video-box {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: #000;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    .video-box video, .video-box iframe, .video-box canvas {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      border: none;
+    }
+    .pip-card {
+      position: absolute;
+      top: 48px;
+      left: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(10, 12, 18, 0.82);
+      backdrop-filter: blur(6px);
+      padding: 8px 14px;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.15);
+      max-width: 78%;
+      pointer-events: none;
+    }
+    .pip-card img {
+      width: 42px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+    .sub-overlay {
+      position: absolute;
+      bottom: 62px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,0.84);
+      color: #fff;
+      padding: 6px 16px;
+      border-radius: 6px;
+      font-size: 13.5px;
+      font-weight: 600;
+      text-align: center;
+      max-width: 88%;
+      pointer-events: none;
+      border: 1px solid rgba(255,255,255,0.14);
+    }
+    .ep-btn {
+      width: 100%;
+      text-align: left;
+      padding: 12px 14px;
+      border-radius: 8px;
+      background: var(--surface2);
+      color: var(--text);
+      border: 1px solid var(--border);
+      cursor: pointer;
+      margin-bottom: 10px;
+      transition: all 0.15s;
+    }
+    .ep-btn.active {
+      border: 2px solid var(--accent);
+      background: rgba(229, 9, 20, 0.14);
+    }
+    .ep-btn.trailer-active {
+      border: 2px solid var(--gold);
+      background: rgba(245, 158, 11, 0.16);
+    }
+    .mode-btn {
+      padding: 7px 14px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      cursor: pointer;
+      font-size: 12.5px;
+      font-weight: bold;
+    }
+    .mode-btn.active-trailer {
+      border: 2px solid var(--gold);
+      color: var(--gold);
+      background: rgba(245,158,11,0.15);
+    }
+    .mode-btn.active-ep {
+      border: 2px solid var(--accent);
+      color: var(--accent);
+      background: rgba(229,9,20,0.15);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand" onclick="showCatalog()">
+      <span class="brand-title">PLATFORM-X</span>
+      <span class="brand-tag">ANIME · TRÁILERS Y AVANCES OFICIALES</span>
+    </div>
+    <button class="btn-icon" onclick="toggleTheme()" title="Cambiar tema">🌓</button>
+  </header>
+
+  <div id="catalog-view">
+    <div class="hero">
+      <div style="font-size:12px;color:var(--accent);font-weight:bold;letter-spacing:2px;">✨ PLATAFORMA STREAMING · IA ✨</div>
+      <h1>Tu catálogo de <span style="color:var(--accent)">anime</span></h1>
+      <p id="hero-stats">Cargando catálogo, tráilers oficiales y avances de capítulos...</p>
+      <div class="search-box">
+        <input type="text" id="search-input" placeholder="Buscar por título, género o sinopsis..." oninput="renderCatalog()" />
+      </div>
+    </div>
+
+    <div class="filter-bar">
+      <button class="pill active" id="filter-all" onclick="setStatusFilter('all')">Todos</button>
+      <button class="pill" id="filter-airing" onclick="setStatusFilter('airing')">🔴 En emisión</button>
+      <button class="pill" id="filter-finished" onclick="setStatusFilter('finished')">Finalizados</button>
+      <button class="pill" id="filter-upcoming" onclick="setStatusFilter('upcoming')">Próximos</button>
+    </div>
+
+    <div class="container">
+      <div class="grid" id="anime-grid"></div>
+    </div>
+  </div>
+
+  <div id="player-view" style="display:none;" class="container"></div>
+
+  <script>
+    let CATALOG = [];
+    let EPISODES = {};
+    let statusFilter = "all";
+    let selectedAnime = null;
+    let selectedEpisode = null;
+    let watchingTrailer = false;
+    let useYoutube = false;
+    let useAnimatedSynopsis = false;
+    let animFrame = null;
+
+    async function init() {
+      const res = await fetch("/api/catalog-data.json");
+      const data = await res.json();
+      CATALOG = data.catalog || [];
+      EPISODES = data.episodes || {};
+      document.getElementById("hero-stats").textContent =
+        `${CATALOG.length} series · Tráilers Oficiales descargados · Avances y Sinopsis en Video por Capítulo`;
+      renderCatalog();
+    }
+
+    function toggleTheme() {
+      document.body.classList.toggle("light");
+    }
+
+    function setStatusFilter(s) {
+      statusFilter = s;
+      ["all", "airing", "finished", "upcoming"].forEach((k) => {
+        document.getElementById("filter-" + k).classList.toggle("active", k === s);
+      });
+      renderCatalog();
+    }
+
+    function renderCatalog() {
+      const q = (document.getElementById("search-input").value || "").toLowerCase();
+      const filtered = CATALOG.filter((a) => {
+        if (statusFilter !== "all" && a.status !== statusFilter) return false;
+        if (q && !a.title.toLowerCase().includes(q) && !a.synopsis.toLowerCase().includes(q) && !(a.genres || []).some(g => g.toLowerCase().includes(q))) return false;
+        return true;
+      });
+
+      const grid = document.getElementById("anime-grid");
+      grid.innerHTML = filtered.map((a) => {
+        const badgeClass = a.status === "airing" ? "airing" : a.status === "upcoming" ? "upcoming" : "";
+        const badgeText = a.status === "airing" ? "EN VIVO" : a.status === "upcoming" ? "PRÓXIMO" : a.release_year;
+        const genresHtml = (a.genres || []).slice(0, 3).map(g => `<span class="genre-tag">${g}</span>`).join("");
+        return `
+          <div class="card" onclick="openAnime('${a.id}', false)">
+            <div class="card-cover">
+              <img src="${a.cover_image_url}" alt="${a.title}" />
+              <span class="badge-top-left ${badgeClass}">${badgeText}</span>
+              <span class="badge-score">★ ${Number(a.score).toFixed(2)}</span>
+              <div class="card-overlay">
+                <div class="play-circle">▶</div>
+                <button class="btn-trailer-card" onclick="event.stopPropagation(); openAnime('${a.id}', true)">
+                  🎬 Ver Tráiler Oficial
+                </button>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="card-meta">
+                <span style="color:var(--muted)">📺 ${a.type || "TV"}</span>
+                <span style="color:var(--gold)">🎬 Tráiler + Avances</span>
+              </div>
+              <h3 class="card-title">${a.title}</h3>
+              <p class="card-desc">${a.synopsis}</p>
+              <div class="genres">${genresHtml}</div>
+            </div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    function showCatalog() {
+      if (animFrame) cancelAnimationFrame(animFrame);
+      selectedAnime = null;
+      selectedEpisode = null;
+      document.getElementById("player-view").style.display = "none";
+      document.getElementById("catalog-view").style.display = "block";
+    }
+
+    function openAnime(animeId, playTrailer) {
+      selectedAnime = CATALOG.find(a => a.id === animeId);
+      const eps = EPISODES[animeId] || [];
+      selectedEpisode = eps[0] || {
+        id: animeId + "-ep1",
+        episode_number: 1,
+        title: "Episodio 1",
+        synopsis: selectedAnime.synopsis,
+        video_url: selectedAnime.trailer_url,
+        youtube_preview_id: selectedAnime.trailer_youtube_id,
+        official_source: selectedAnime.official_source,
+      };
+      watchingTrailer = Boolean(playTrailer);
+      useYoutube = false;
+      useAnimatedSynopsis = false;
+      document.getElementById("catalog-view").style.display = "none";
+      document.getElementById("player-view").style.display = "block";
+      renderPlayer();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function selectEpisode(epId) {
+      const eps = EPISODES[selectedAnime.id] || [];
+      const found = eps.find(e => e.id === epId);
+      if (found) {
+        selectedEpisode = found;
+        watchingTrailer = false;
+        renderPlayer();
+      }
+    }
+
+    function switchMode(isTrailerMode) {
+      watchingTrailer = isTrailerMode;
+      renderPlayer();
+    }
+
+    function toggleYoutube() {
+      useYoutube = !useYoutube;
+      useAnimatedSynopsis = false;
+      renderPlayer();
+    }
+
+    function toggleAnimatedSynopsis() {
+      useAnimatedSynopsis = !useAnimatedSynopsis;
+      useYoutube = false;
+      renderPlayer();
+    }
+
+    function renderPlayer() {
+      if (animFrame) cancelAnimationFrame(animFrame);
+      const a = selectedAnime;
+      const ep = selectedEpisode;
+      const eps = EPISODES[a.id] || [];
+
+      const activeVideoUrl = watchingTrailer ? a.trailer_url : ep.video_url;
+      const activeTitle = watchingTrailer
+        ? `${a.title} — Tráiler Oficial`
+        : `${a.title} — Ep. ${ep.episode_number}: ${ep.title}`;
+      const activeSynopsis = watchingTrailer ? a.synopsis : (ep.synopsis || a.synopsis);
+      const activeYoutubeId = watchingTrailer ? a.trailer_youtube_id : (ep.youtube_preview_id || a.trailer_youtube_id);
+      const activeSource = watchingTrailer ? a.official_source : (ep.official_source || a.official_source);
+
+      let mediaHtml = "";
+      if (useYoutube && activeYoutubeId) {
+        mediaHtml = `<iframe src="https://www.youtube.com/embed/${activeYoutubeId}?autoplay=1&rel=0" allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>`;
+      } else if (useAnimatedSynopsis) {
+        mediaHtml = `<canvas id="synopsis-canvas" width="960" height="540"></canvas>`;
+      } else {
+        mediaHtml = `
+          <video id="main-video" src="${activeVideoUrl}" poster="${a.cover_image_url}" controls autoplay loop playsinline></video>
+          <div class="pip-card">
+            <img src="${a.cover_image_url}" alt="${a.title}" />
+            <div>
+              <div style="font-size:13px;font-weight:bold;color:#fff">${activeTitle}</div>
+              <div style="font-size:11px;color:#d1d5db;margin-top:3px;line-height:1.35">${activeSynopsis.slice(0, 160)}...</div>
+            </div>
+          </div>
+          <div class="sub-overlay" id="sub-overlay">📖 Sinopsis Oficial: ${activeSynopsis.split(". ")[0]}.</div>
+        `;
+      }
+
+      const epsHtml = eps.map(item => {
+        const isCurrent = !watchingTrailer && item.id === ep.id;
+        return `
+          <button class="ep-btn ${isCurrent ? 'active' : ''}" onclick="selectEpisode('${item.id}')">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;">
+              <strong style="font-size:13px;color:${isCurrent ? 'var(--accent)' : 'var(--text)'}">Ep. ${item.episode_number} — ${item.title}</strong>
+              <span style="font-size:10px;background:${isCurrent ? 'var(--accent)' : 'var(--border)'};color:#fff;padding:2px 6px;border-radius:4px;font-weight:bold;">▶ Avance</span>
+            </div>
+            <div style="font-size:11.5px;color:var(--muted);line-height:1.45;">${item.synopsis || ""}</div>
+          </button>
+        `;
+      }).join("");
+
+      const container = document.getElementById("player-view");
+      container.innerHTML = `
+        <button onclick="showCatalog()" style="background:none;border:none;color:var(--accent);font-weight:bold;font-size:14px;cursor:pointer;margin-bottom:16px;padding:0;">
+          ← Volver al catálogo
+        </button>
+
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:10px;">
+          <div>
+            <h1 style="margin:0;font-size:26px;">${a.title} <span style="font-size:14px;color:var(--muted);font-weight:normal;">${a.title_jp ? `(${a.title_jp})` : ""}</span></h1>
+          </div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <button class="mode-btn ${watchingTrailer ? 'active-trailer' : ''}" onclick="switchMode(true)">🎬 Tráiler Oficial</button>
+            <button class="mode-btn ${!watchingTrailer ? 'active-ep' : ''}" onclick="switchMode(false)">▶ Avance Ep. ${ep.episode_number}</button>
+            <button class="mode-btn" onclick="toggleAnimatedSynopsis()">✨ ${useAnimatedSynopsis ? 'Ver Video MP4' : 'Modo Narrador Sinopsis'}</button>
+            <button class="mode-btn" onclick="toggleYoutube()">▶️ ${useYoutube ? 'Video Local MP4' : 'YouTube Embed'}</button>
+          </div>
+        </div>
+
+        <p style="color:var(--muted);font-size:14px;line-height:1.55;margin-top:0;margin-bottom:20px;max-width:880px;">${a.synopsis}</p>
+
+        <div class="player-layout">
+          <div class="player-main">
+            <div class="video-box">
+              <div style="position:absolute;top:12px;left:14px;right:14px;display:flex;justify-content:space-between;z-index:20;pointer-events:none;">
+                <span style="background:${watchingTrailer ? 'var(--gold)' : 'var(--accent)'};color:${watchingTrailer ? '#000' : '#fff'};font-size:11px;font-weight:800;padding:4px 10px;border-radius:6px;">
+                  ${watchingTrailer ? '🎬 TRÁILER OFICIAL' : '📺 AVANCE Y SINOPSIS DEL CAPÍTULO'}
+                </span>
+                <span style="background:rgba(0,0,0,0.78);color:#e5e7eb;font-size:11px;padding:4px 10px;border-radius:6px;">
+                  Fuente: ${activeSource}
+                </span>
+              </div>
+              ${mediaHtml}
+            </div>
+
+            <div style="margin-top:16px;padding:18px 20px;background:var(--surface);border:1px solid var(--border);border-radius:10px;">
+              <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:10px;">
+                <strong style="font-size:15px;">
+                  ${watchingTrailer
+                    ? `🎬 Sinopsis General y Tráiler Oficial — ${a.title}`
+                    : `📖 Avance y Sinopsis Oficial — Episodio ${ep.episode_number}: "${ep.title}"`}
+                </strong>
+                <a href="${a.official_channel_url}" target="_blank" rel="noopener noreferrer" style="color:var(--gold);font-size:12px;font-weight:bold;text-decoration:none;">
+                  🔗 Ver en Canal Oficial (${activeSource}) ↗
+                </a>
+              </div>
+              <p style="margin:0 0 12px;font-size:14px;color:var(--muted);line-height:1.6;">${activeSynopsis}</p>
+              <div style="font-size:12px;color:var(--muted);border-top:1px solid var(--border);padding-top:10px;display:flex;justify-content:space-between;">
+                <span>Archivo de video local: <code>${activeVideoUrl}</code></span>
+                <span style="color:var(--green);font-weight:bold;">✔ Video MP4/WebM Activo</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="player-side">
+            <h3 style="margin:0 0 10px;font-size:12px;text-transform:uppercase;letter-spacing:1px;color:var(--gold);">🎬 Tráiler Oficial del Anime</h3>
+            <button class="ep-btn ${watchingTrailer ? 'trailer-active' : ''}" onclick="switchMode(true)">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+                <strong style="color:${watchingTrailer ? 'var(--gold)' : 'var(--text)'};font-size:13px;">Ver Tráiler Oficial (PV)</strong>
+                <span style="background:var(--gold);color:#000;font-size:10px;font-weight:800;padding:2px 6px;border-radius:4px;">OFICIAL</span>
+              </div>
+              <div style="font-size:11px;color:var(--muted);">Fuente: ${a.official_source}</div>
+            </button>
+
+            <h3 style="margin:18px 0 10px;font-size:12px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);">📺 Capítulos — Avance y Sinopsis</h3>
+            ${epsHtml}
+          </div>
+        </div>
+      `;
+
+      if (useAnimatedSynopsis) {
+        startCanvasNarrator(a.cover_image_url, activeTitle, activeSynopsis, activeSource, watchingTrailer);
+      } else {
+        const videoEl = document.getElementById("main-video");
+        const subEl = document.getElementById("sub-overlay");
+        if (videoEl && subEl) {
+          const sentences = activeSynopsis.split(". ").filter(Boolean);
+          videoEl.addEventListener("timeupdate", () => {
+            if (sentences.length > 0) {
+              const idx = Math.floor(videoEl.currentTime / 4) % sentences.length;
+              const s = sentences[idx].endsWith(".") ? sentences[idx] : sentences[idx] + ".";
+              subEl.textContent = "📖 Sinopsis Oficial: " + s;
+            }
+          });
+        }
+      }
+    }
+
+    function startCanvasNarrator(posterUrl, title, synopsis, source, isTrailer) {
+      const canvas = document.getElementById("synopsis-canvas");
+      if (!canvas) return;
+      const ctx = canvas.getContext("2d");
+      const img = new Image();
+      img.src = posterUrl;
+      let t = 0;
+
+      function wrap(text, maxWidth) {
+        const words = text.split(" ");
+        const lines = [];
+        let line = "";
+        for (const w of words) {
+          const test = line ? line + " " + w : w;
+          if (ctx.measureText(test).width > maxWidth && line) {
+            lines.push(line);
+            line = w;
+          } else {
+            line = test;
+          }
+        }
+        if (line) lines.push(line);
+        return lines;
+      }
+
+      function loop() {
+        t += 0.03;
+        const w = canvas.width, h = canvas.height;
+        ctx.fillStyle = "#0b0d13";
+        ctx.fillRect(0, 0, w, h);
+
+        if (img.complete && img.naturalWidth > 0) {
+          ctx.save();
+          ctx.globalAlpha = 0.32;
+          const sc = 1.06 + Math.sin(t * 0.4) * 0.04;
+          ctx.drawImage(img, (w - w * sc) / 2, (h - h * sc) / 2, w * sc, h * sc);
+          ctx.restore();
+        }
+
+        ctx.textAlign = "center";
+        ctx.fillStyle = isTrailer ? "#f59e0b" : "#e50914";
+        ctx.font = "bold 14px sans-serif";
+        ctx.fillText(isTrailer ? `🎬 TRÁILER OFICIAL · ${source}` : `📺 AVANCE Y SINOPSIS OFICIAL · ${source}`, w / 2, 140);
+
+        ctx.fillStyle = "#ffffff";
+        ctx.font = "bold 24px sans-serif";
+        ctx.fillText(title, w / 2, 185);
+
+        ctx.fillStyle = "#e5e7eb";
+        ctx.font = "16px sans-serif";
+        const lines = wrap(synopsis, w - 160);
+        lines.forEach((l, i) => {
+          ctx.fillText(l, w / 2, 240 + i * 28);
+        });
+
+        for (let i = 0; i < 48; i++) {
+          const bh = Math.abs(Math.sin(t + i * 0.35) * 42) + 8;
+          ctx.fillStyle = isTrailer ? "#f59e0b" : "#e50914";
+          ctx.fillRect(i * (w / 48) + 2, h - bh - 20, (w / 48) - 4, bh);
+        }
+
+        animFrame = requestAnimationFrame(loop);
+      }
+      loop();
+    }
+
+    init();
+  </script>
+</body>
+</html>

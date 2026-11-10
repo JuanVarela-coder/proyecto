@@ -1,0 +1,7 @@
+{
+  "skill_name": "skill-content-moderation",
+  "category": "Comunidad",
+  "description": "Revisa comentarios de episodios para filtrar spoilers no etiquetados o lenguaje ofensivo.",
+  "auto_tag_spoilers": true,
+  "block_profanity": true
+}

@@ -1,0 +1,7 @@
+{
+  "skill_name": "skill-detect-intro-outro",
+  "category": "Audio/Video",
+  "description": "Analiza patrones de audio y video en MP4/HLS para identificar inicio y fin del Opening y Ending.",
+  "audio_fingerprint_threshold": 0.85,
+  "default_intro_duration_sec": 90
+}

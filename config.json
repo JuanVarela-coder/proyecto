@@ -1,0 +1,11 @@
+{
+  "platform": "Platform-X Anime",
+  "version": "1.0.0",
+  "skills_registered": [
+    "skill-ingest-metadata",
+    "skill-detect-intro-outro",
+    "skill-auto-subtitle-sync",
+    "skill-semantic-search",
+    "skill-content-moderation"
+  ]
+}

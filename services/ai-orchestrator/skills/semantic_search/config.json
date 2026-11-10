@@ -1,0 +1,7 @@
+{
+  "skill_name": "skill-semantic-search",
+  "category": "Búsqueda",
+  "description": "Busca animes mediante embeddings vectoriales basándose en descripciones emocionales o temáticas.",
+  "vector_db": "pgvector / Pinecone",
+  "embedding_model": "text-embedding-3-small"
+}

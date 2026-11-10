@@ -1,0 +1,19 @@
+{
+  "name": "platform-x-anime",
+  "version": "1.0.0",
+  "private": true,
+  "description": "High-concurrency anime streaming platform with AI microservices orchestrator",
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "dev:infra": "docker compose -f infrastructure/docker/docker-compose.yml up -d",
+    "stop:infra": "docker compose -f infrastructure/docker/docker-compose.yml down",
+    "dev:api": "npm --prefix apps/api run dev",
+    "dev:web": "npm --prefix apps/web run dev",
+    "dev:ai": "cd services/ai-orchestrator && uvicorn main:app --reload --port 8000"
+  },
+  "keywords": ["streaming", "anime", "hls", "ai-agents", "microservices"],
+  "author": "Platform-X Engineering",
+  "license": "MIT"
+}

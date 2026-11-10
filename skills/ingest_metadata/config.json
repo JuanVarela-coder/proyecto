@@ -1,0 +1,13 @@
+{
+  "skill_name": "skill-ingest-metadata",
+  "category": "Ingesta",
+  "description": "Extrae metadatos de fuentes web o sinopsis crudas y los convierte en un JSON estandarizado.",
+  "model": "gpt-4o-mini-metadata-extractor",
+  "fallback_genres": [
+    "Acción",
+    "Aventura",
+    "Fantasía",
+    "Sci-Fi",
+    "Comedia"
+  ]
+}

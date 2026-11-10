@@ -1,0 +1,103 @@
+version: "3.8"
+
+services:
+  # ---------------------------------------------------------------------------
+  # 1. Base de Datos Relacional: PostgreSQL
+  # ---------------------------------------------------------------------------
+  postgres:
+    image: postgres:16-alpine
+    container_name: platformx-postgres
+    restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-platformx}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-platformx_secret_pass}
+      POSTGRES_DB: ${POSTGRES_DB:-platformx_anime}
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ../db/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-platformx} -d ${POSTGRES_DB:-platformx_anime}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # ---------------------------------------------------------------------------
+  # 2. Caché e Historial en Caliente: Redis
+  # ---------------------------------------------------------------------------
+  redis:
+    image: redis:7-alpine
+    container_name: platformx-redis
+    restart: always
+    ports:
+      - "${REDIS_PORT:-6379}:6379"
+    volumes:
+      - redisdata:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  # ---------------------------------------------------------------------------
+  # 3. Almacenamiento de Objetos S3 / Video Assets: MinIO
+  # ---------------------------------------------------------------------------
+  minio:
+    image: minio/minio:RELEASE.2024-07-16T23-46-41Z
+    container_name: platformx-minio
+    restart: always
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: ${S3_ACCESS_KEY:-minioadmin}
+      MINIO_ROOT_PASSWORD: ${S3_SECRET_KEY:-minioadmin}
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - miniodata:/data
+    healthcheck:
+      test: ["CMD", "mc", "ready", "local"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  # ---------------------------------------------------------------------------
+  # 4. Bus de Eventos y Mensajería: RabbitMQ
+  # ---------------------------------------------------------------------------
+  rabbitmq:
+    image: rabbitmq:3.13-management-alpine
+    container_name: platformx-rabbitmq
+    restart: always
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_USER:-guest}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASS:-guest}
+    ports:
+      - "5672:5672"     # AMQP
+      - "15672:15672"   # Management Dashboard UI
+    volumes:
+      - rabbitmqdata:/var/lib/rabbitmq
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ---------------------------------------------------------------------------
+  # 5. Servidor de Streaming de Video HLS (Nginx CDN Local)
+  # ---------------------------------------------------------------------------
+  hls-server:
+    image: nginx:alpine
+    container_name: platformx-hls
+    restart: always
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx-hls.conf:/etc/nginx/conf.d/default.conf:ro
+      - ../../videos:/usr/share/nginx/html/hls:ro
+
+volumes:
+  pgdata:
+  redisdata:
+  miniodata:
+  rabbitmqdata:

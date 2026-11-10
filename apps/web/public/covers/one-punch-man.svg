@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 900" width="600" height="900">
+  <defs>
+    <radialGradient id="burst" cx="50%" cy="42%" r="60%">
+      <stop offset="0%" stop-color="#fef08a"/>
+      <stop offset="35%" stop-color="#f59e0b"/>
+      <stop offset="70%" stop-color="#dc2626"/>
+      <stop offset="100%" stop-color="#180404"/>
+    </radialGradient>
+    <linearGradient id="suit" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#facc15"/>
+      <stop offset="100%" stop-color="#ca8a04"/>
+    </linearGradient>
+    <linearGradient id="glove" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ef4444"/>
+      <stop offset="100%" stop-color="#991b1b"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="900" fill="url(#burst)"/>
+
+  <!-- Impact Speed Lines -->
+  <g stroke="#ffffff" stroke-opacity="0.35" stroke-width="3">
+    <line x1="300" y1="380" x2="0" y2="0"/>
+    <line x1="300" y1="380" x2="150" y2="0"/>
+    <line x1="300" y1="380" x2="450" y2="0"/>
+    <line x1="300" y1="380" x2="600" y2="0"/>
+    <line x1="300" y1="380" x2="600" y2="200"/>
+    <line x1="300" y1="380" x2="600" y2="550"/>
+    <line x1="300" y1="380" x2="600" y2="850"/>
+    <line x1="300" y1="380" x2="0" y2="200"/>
+    <line x1="300" y1="380" x2="0" y2="550"/>
+    <line x1="300" y1="380" x2="0" y2="850"/>
+  </g>
+
+  <!-- White Hero Cape Flowing -->
+  <path d="M140 310 Q40 500 20 750 L580 750 Q560 500 460 310 Z" fill="#f8fafc" stroke="#1e293b" stroke-width="5"/>
+
+  <!-- Saitama Torso (Yellow Hero Suit) -->
+  <path d="M175 330 L425 330 L465 730 L135 730 Z" fill="url(#suit)" stroke="#0f172a" stroke-width="6"/>
+  <!-- Zipper & Collar -->
+  <line x1="300" y1="330" x2="300" y2="680" stroke="#0f172a" stroke-width="4"/>
+  <circle cx="220" cy="345" r="14" fill="#1e293b" stroke="#0f172a" stroke-width="4"/>
+  <circle cx="380" cy="345" r="14" fill="#1e293b" stroke="#0f172a" stroke-width="4"/>
+  <!-- Black Belt & Gold Buckle -->
+  <rect x="148" y="640" width="304" height="36" fill="#0f172a"/>
+  <ellipse cx="300" cy="658" rx="34" ry="22" fill="#fbbf24" stroke="#0f172a" stroke-width="4"/>
+
+  <!-- Saitama Bald Head (Serious Mode) -->
+  <ellipse cx="300" cy="225" rx="76" ry="92" fill="#fed7aa" stroke="#0f172a" stroke-width="6"/>
+  <!-- Head shine -->
+  <ellipse cx="270" cy="165" rx="22" ry="12" transform="rotate(-25 270 165)" fill="#fff7ed" opacity="0.85"/>
+  <!-- Serious Eyes & Brow -->
+  <path d="M242 205 L288 220" stroke="#0f172a" stroke-width="6" stroke-linecap="round"/>
+  <path d="M358 205 L312 220" stroke="#0f172a" stroke-width="6" stroke-linecap="round"/>
+  <polygon points="248,218 284,225 278,236 250,232" fill="#ffffff" stroke="#0f172a" stroke-width="3"/>
+  <polygon points="352,218 316,225 322,236 350,232" fill="#ffffff" stroke="#0f172a" stroke-width="3"/>
+  <circle cx="268" cy="227" r="4" fill="#0f172a"/>
+  <circle cx="332" cy="227" r="4" fill="#0f172a"/>
+  <line x1="280" y1="278" x2="320" y2="278" stroke="#0f172a" stroke-width="5" stroke-linecap="round"/>
+
+  <!-- Giant Red Fist (Foreground Punch) -->
+  <g transform="translate(185, 365)">
+    <rect x="0" y="0" width="230" height="190" rx="42" fill="url(#glove)" stroke="#0f172a" stroke-width="8"/>
+    <!-- Knuckle creases -->
+    <line x1="55" y1="15" x2="55" y2="95" stroke="#450a0a" stroke-width="6" stroke-linecap="round"/>
+    <line x1="115" y1="15" x2="115" y2="95" stroke="#450a0a" stroke-width="6" stroke-linecap="round"/>
+    <line x1="175" y1="15" x2="175" y2="95" stroke="#450a0a" stroke-width="6" stroke-linecap="round"/>
+    <!-- Thumb -->
+    <rect x="15" y="100" width="155" height="68" rx="26" fill="#dc2626" stroke="#0f172a" stroke-width="7"/>
+    <!-- Highlight -->
+    <ellipse cx="60" cy="45" rx="25" ry="12" fill="#fca5a5" opacity="0.5"/>
+  </g>
+
+  <!-- Bottom Banner -->
+  <rect x="0" y="730" width="600" height="170" fill="#09090b"/>
+  <text x="300" y="805" font-family="Impact, sans-serif" font-size="62" font-weight="900" fill="#facc15" letter-spacing="3" text-anchor="middle" stroke="#dc2626" stroke-width="2">ONE PUNCH MAN</text>
+  <text x="300" y="845" font-family="sans-serif" font-size="18" font-weight="bold" fill="#ef4444" letter-spacing="8" text-anchor="middle">ワンパンマン · HERO ASSOCIATION</text>
+</svg>
